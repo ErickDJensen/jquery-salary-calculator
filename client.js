@@ -13,13 +13,13 @@ function handleClick(){
 
     let firstName = $('#First-Name').val();
     let lastName = $('#Last-Name').val();
-    let EmployeeId = $('#Employee-ID').val();
+    let employeeId = $('#Employee-ID').val();
     let title = $('#Title').val();
     let annualSalary = $('#Annual-Salary').val();
 
-    console.log('get inputs', firstName, lastName, EmployeeId, title, annualSalary);
+    console.log('get inputs', firstName, lastName, employeeId, title, annualSalary);
 
-    addEmployee(firstName, lastName, EmployeeId, title, annualSalary);
+    addEmployee(firstName, lastName, employeeId, title, annualSalary);
     console.log('All emplyees', employeeList);
     
     
@@ -34,9 +34,9 @@ function handleClick(){
     
 }
 
-function addEmployee(firstName, lastName, EmployeeId, title, annualSalary){
+function addEmployee(firstName, lastName, employeeId, title, annualSalary){
     console.log('in addEmployee');
-    let employee = {firstName, lastName, EmployeeId, title, annualSalary }
+    let employee = {firstName, lastName, employeeId, title, annualSalary }
     console.log('new employee', employee);
     employeeList.push(employee); 
 }
@@ -45,7 +45,7 @@ function addEmployee(firstName, lastName, EmployeeId, title, annualSalary){
 
 let employeeList = [];
 
-employeeList.push({firstName:'Bob', lastName:'Williams', EmployeeId:1234, title:'Doctor', annualSalary:100000});
+employeeList.push({firstName:'Bob', lastName:'Williams', employeeId:1234, title:'Doctor', annualSalary:100000});
 
 console.log('list of emplyee info', employeeList);
 
@@ -53,12 +53,15 @@ console.log('list of emplyee info', employeeList);
 function appendEntryToDom(){
     console.log('in appendEntryToDom');
     
-    let tableEntry = $('#TableFirstName');
+    let tableEntry = $('#myTable');
 
     tableEntry.empty();
 
     for(item of employeeList){
-        let tableItem=$(`<td>${item.firstName}</td>`);
-    tableEntry.append(tableItem);
+        let $td=$(`<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.employeeId}</td><td>${item.title}</td><td>${item.annualSalary}</td></tr>`);
+    tableEntry.append($td);
     }
 }
+
+// $('#myTable').append('<tr><td>firstName</td><td>lastName</td>...</tr>');
+// ${pet.name}
