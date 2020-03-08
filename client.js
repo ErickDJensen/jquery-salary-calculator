@@ -5,7 +5,6 @@ console.log('You got this!!');
 
 //buttons to submit and delete
 $('#btn-add').on('click', submitClick);
-$('#del-button').on('click', deleteClick);
 }
 
 //button function to add employee info from input fields
@@ -30,6 +29,7 @@ function submitClick(){
     
     //call function to append to DOM
     appendEntryToDom();
+    monthlyCost();
 
     //clear fields on DOM
     $('#First-Name').val('');
@@ -39,6 +39,12 @@ function submitClick(){
     $('#Annual-Salary').val('');
     
 }
+
+//deletes row from table
+$(document).on("click",'#del-Button', function(){
+    $(this).closest('tr').remove(); 
+    deleteFromArray();
+ });
 
 //function to add employee to an array
 function addEmployee(firstName, lastName, employeeId, title, annualSalary){
@@ -69,8 +75,10 @@ function appendEntryToDom(){
         let $td=$(`
         <tr>
         <td>${item.firstName}</td>
-        <td>${item.lastName}</td><td>${item.employeeId}</td>
-        <td>${item.title}</td><td>${item.annualSalary}</td>
+        <td>${item.lastName}</td>
+        <td>${item.employeeId}</td>
+        <td>${item.title}</td>
+        <td>${item.annualSalary}</td>
         <td><button id=del-Button>Delete</button></td>
         </tr>`
         );
@@ -78,10 +86,23 @@ function appendEntryToDom(){
     }
 }
 
-
-//will delete an employee row from table
-function deleteClick(){
-    console.log('in deleteClick');
-    
+//delete object from array
+function deleteFromArray(){
+    console.log('in deleteFromArray');
 }
 
+let budget = 0;
+//function to calculate monthly costs
+function monthlyCost(){
+    for (let i = 0; i < employeeList.length; i++) {
+    budget += Number(employeeList[i].annualSalary);    
+    }
+    if (budget > 20000){
+        color = "red";
+    }
+    let monthlyBudget = budget / 12;
+
+    let el = $('#budgetAmount');
+    el.empty();
+    el.append(Number(monthlyBudget).toFixed(2));
+}
