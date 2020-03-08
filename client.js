@@ -91,18 +91,17 @@ function deleteFromArray(){
     console.log('in deleteFromArray');
 }
 
-let budget = 0;
 //function to calculate monthly costs
 function monthlyCost(){
+    let budget = 0;
     for (let i = 0; i < employeeList.length; i++) {
-    budget += Number(employeeList[i].annualSalary);    
+    budget += Number(employeeList[i].annualSalary/12);    
     }
-    if (budget > 20000){
-        color = "red";
+    if(budget > 20000){
+        $('#budgetAmount').css("background-color", "red");
     }
-    let monthlyBudget = budget / 12;
-
     let el = $('#budgetAmount');
     el.empty();
-    el.append(Number(monthlyBudget).toFixed(2));
+    el.append(Number(budget).toFixed(2));
 }
+
