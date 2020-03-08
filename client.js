@@ -45,7 +45,6 @@ function addEmployee(firstName, lastName, employeeId, title, annualSalary){
 
 let employeeList = [];
 
-employeeList.push({firstName:'Bob', lastName:'Williams', employeeId:1234, title:'Doctor', annualSalary:100000});
 
 console.log('list of emplyee info', employeeList);
 
@@ -58,7 +57,7 @@ function appendEntryToDom(){
     tableEntry.empty();
 
     for(item of employeeList){
-        let $td=$(`<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.employeeId}</td><td>${item.title}</td><td>${item.annualSalary}</td></tr>`);
+        let $td=$(`<tr><td>${item.firstName}</td><td>${item.lastName}</td><td>${item.employeeId}</td><td>${item.title}</td><td>${item.annualSalary}</td><td><button id=delButton>Delete</button></td></tr>`);
     tableEntry.append($td);
     }
 }
