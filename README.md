@@ -23,8 +23,8 @@ This page takes in some employee information and outputs a monthly budget.
 
 ## Built With
 
-JavaScript
-jQuery
+-JavaScript-
+-jQuery-
 
 ## Acknowledgement
 Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. 
