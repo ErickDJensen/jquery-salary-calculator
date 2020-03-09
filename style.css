@@ -18,4 +18,22 @@ table, th, td {
       margin: auto;
   }
 
+  body {
+      background-color: lightblue;
+  }
+
+  #color {
+      background-color: darkblue;
+      color: white;
+  }
+
+  table {
+      background-color: lightsteelblue;
+  }
+
+  #btn-add {
+      background-color: blue;
+      color: yellow;
+  }
+
   
