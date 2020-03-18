@@ -5,6 +5,7 @@ function onReady() {
 
     //buttons to submit and delete
     $('#btn-add').on('click', submitClick);
+    $('#table').on('click', '.delete', removeItemFromTable);
 }
 
 //button function to add employee info from input fields
@@ -40,11 +41,6 @@ function submitClick() {
 
 }
 
-//deletes row from table
-$(document).on("click", '#del-Button', function () {
-    $(this).closest('tr').remove();
-    // deleteFromArray();
-});
 
 //function to add employee to an array
 function addEmployee(firstName, lastName, employeeId, title, annualSalary) {
@@ -73,22 +69,31 @@ function appendEntryToDom() {
     //for loop to go through array and append to DOM
     for (item of employeeList) {
         let $td = $(`
-        <tr>
+        <tr class='${item.employeeId}'>
         <td>${item.firstName}</td>
         <td>${item.lastName}</td>
         <td>${item.employeeId}</td>
         <td>${item.title}</td>
         <td>${item.annualSalary}</td>
-        <td><button id=del-Button>Delete</button></td>
+        <td><button class='delete' id=${item.employeeId}>Delete</button></td>
         </tr>`
         );
         tableEntry.append($td);
     }
 }
 
-//delete object from array 
-function deleteFromArray() {
-    console.log('in deleteFromArray');
+//remove employee from table 
+function removeItemFromTable() {
+    console.log(event.target.id);
+    $(this).closest('tr').remove();
+
+    //remove employee from array
+    for (let i = 0; i < employeeList.length; i++) {
+        if (employeeList[i].employeeId === event.target.id) {
+            employeeList.splice(i, 1);
+        }
+        monthlyCost();
+    }
 }
 
 //function to calculate monthly costs
@@ -99,6 +104,8 @@ function monthlyCost() {
     }
     if (budget > 20000) {
         $('#budgetAmount').css("background-color", "red");
+    }else if (budget < 20000){
+        $('#budgetAmount').css("background-color", "transparent");
     }
     let el = $('#budgetAmount');
     el.empty();
